@@ -7,7 +7,7 @@ import styled from "styled-components";
 import "./style.css";
 
 const Button = styled.button`
-  transform: rotate(${(props) => props.isshowpara}deg);
+  transform: rotate(${(props) => !props.$isshowpara ? '180': '0'}deg);
 `;
 
 const Login = () => {
@@ -24,9 +24,6 @@ const Login = () => {
     const url = "https://apis.ccbp.in/login";
     const options = {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: JSON.stringify(userData),
     };
 
@@ -34,13 +31,13 @@ const Login = () => {
       const resp = await fetch(url, options);
       if (resp.ok) {
         const data = await resp.json();
-        console.log(data.jwt_token);
+        // console.log(data.jwt_token);
         Cookies.set('login_token', data.jwt_token, {expires: 2})
         setErrorMsg("Logging In...");
         
       } else {
         const errData = await resp.json();
-        console.log(errData.error_msg)
+        // console.log(errData.error_msg)
         setErrorMsg(errData.error_msg || "username and password didn't match");
       }
     } catch (error) {
@@ -55,7 +52,7 @@ const Login = () => {
       username: username,
       password: password,
     };
-    console.log(userInputDetails);
+    // console.log(userInputDetails);
     doLoginApi(userInputDetails);
   };
 
@@ -94,7 +91,7 @@ const Login = () => {
             <Button
               type="button"
               className="showpass-icon"
-              $isshowpara={!showPass ? '180': '0'}
+              $isshowpara={showPass}
               title="Show Password"
               onClick={() => setPassShow((prev) => !prev)}
             >

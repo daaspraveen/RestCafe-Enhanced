@@ -7,7 +7,7 @@ import styled from "styled-components";
 import "./style.css";
 
 const Button = styled.button`
-  transform: rotate(${(props) => (!props.isShowPass ? "180" : "0")}deg);
+  transform: rotate(${(props) => props.isshowpara}deg);
 `;
 
 const Login = () => {
@@ -94,7 +94,7 @@ const Login = () => {
             <Button
               type="button"
               className="showpass-icon"
-              isShowPass={showPass}
+              $isshowpara={!showPass ? '180': '0'}
               title="Show Password"
               onClick={() => setPassShow((prev) => !prev)}
             >

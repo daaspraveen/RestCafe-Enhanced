@@ -1,0 +1,94 @@
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #fff;
+    padding-bottom: 20px;
+  }
+  
+  .loader-box {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .loader-box svg {
+    object-fit: contain;
+    object-position: center center;
+    overflow: visible;
+  }
+  
+  @media screen and (max-width: 767px) {
+    .loader {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  
+  .tabs-nav,
+  .tabs-ul {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+  }
+  .tabs-ul {
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 10px;
+    gap: 5px 20px;
+    margin: auto;
+  }
+  .tabs-ul::-webkit-scrollbar {
+    width: 10px;
+    height: 5px;
+    background-color: transparent;
+  }
+  .tabs-ul::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  .tabs-ul::-webkit-scrollbar-thumb {
+    background-color: lightgray;
+    border-radius: 8px;
+  }
+  .tab-li {
+    width: auto;
+    list-style-type: none;
+    border: none;
+    transition: all 0.5s ease-in-out;
+    border-bottom: 1px solid transparent;
+  }
+  .tab-btn {
+    border: none;
+    background-color: transparent;
+    width: max-content;
+    text-wrap-mode: nowrap;
+    outline: none;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    padding-block: 5px;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+  }
+  .selected-tab {
+    border-bottom: 1px solid coral;
+    color: coral;
+    font-weight: 500;
+  }
+  
+  .products-ul {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+  

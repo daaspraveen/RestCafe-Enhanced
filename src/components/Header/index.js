@@ -16,7 +16,7 @@ const Header = props => {
   }
   const doLogout = () => {
     // console.log('logged out')
-    Cookies.remove('login_token')
+    Cookies.remove('jwt_token')
     navigate("/login")
   }
 

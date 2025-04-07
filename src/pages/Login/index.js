@@ -13,7 +13,7 @@ const Button = styled.button`
 const Login = () => {
   // console.log('in login')
 
-  const cookieToken = Cookies.get("login_token");
+  const cookieToken = Cookies.get("jwt_token");
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setPassShow] = useState(false);
@@ -32,7 +32,7 @@ const Login = () => {
       if (resp.ok) {
         const data = await resp.json();
         // console.log(data.jwt_token);
-        Cookies.set('login_token', data.jwt_token, {expires: 2})
+        Cookies.set('jwt_token', data.jwt_token, {expires: 2})
         setErrorMsg("Logging In...");
         
       } else {

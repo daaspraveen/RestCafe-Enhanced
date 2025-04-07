@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 
-import RestaurantCartContext from "../../Contexts";
+import CartContext from "../../Contexts";
 
 import "./style.css";
 
@@ -15,15 +15,17 @@ const CartItem = ({ cartItemDetails }) => {
     dish_price: dishPrice,
   } = cartItemDetails;
   // console.log('cartItemDetails', cartItemDetails)
-  const { modifyCartItemQuantityContent, removeCartItemContext } = useContext(
-    RestaurantCartContext
-  );
+  const {
+    removeCartItem,
+    incrementCartItemQuantity,
+    decrementCartItemQuantity,
+  } = useContext(CartContext);
 
-  const onIncreaseQty = () => modifyCartItemQuantityContent(dishId, true);
+  const onIncreaseQty = () => incrementCartItemQuantity(dishId);
 
-  const onDecreaseQty = () => modifyCartItemQuantityContent(dishId, false);
+  const onDecreaseQty = () => decrementCartItemQuantity(dishId);
 
-  const onRemoveCartItem = () => removeCartItemContext(dishId);
+  const onRemoveCartItem = () => removeCartItem(dishId);
 
   return (
     <li className="cartItem-li">
@@ -32,9 +34,7 @@ const CartItem = ({ cartItemDetails }) => {
         <p className="cartItem-name">{dishName}</p>
         <p className="cartItem-price">
           {dishCurrency}
-          <span>
-            {dishPrice.toFixed(2,0)}
-          </span>
+          <span>{dishPrice.toFixed(2, 0)}</span>
         </p>
         <div className="cartItem-quantity-box">
           <button type="button" onClick={onDecreaseQty}>

@@ -5,8 +5,9 @@ import {useNavigate} from 'react-router-dom'
 import './style.css'
 
 const Header = props => {
-  const {restoName, ordersList} = props
+  const {ordersList} = props
   // console.log('ordersList in header', ordersList)
+  const restoName = localStorage.getItem('restoName')
   const navigate = useNavigate()
 
   const redirectCart = () => {

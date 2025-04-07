@@ -1,12 +1,17 @@
 // import React from 'react'
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useContext} from 'react'
+import CartContext from '../../Contexts'
 import './style.css'
 
 const ProductItem = React.memo((props) => {
-  const {prodData, ordersList, updateOrderList} = props
+  const {prodData, ordersList} = props
   // console.log('prod item', prodData)
   // console.log('ordersList in pd : ', ordersList)
   const [cartCount, setCartCount] = useState(0)
+  const {
+    addCartItem,
+    decrementCartItemQuantity,
+    } = useContext(CartContext)
 
   const pd = {
     dishType: prodData.dish_Type,
@@ -26,9 +31,6 @@ const ProductItem = React.memo((props) => {
     setCartCount(haveInOrdList ? haveInOrdList.cartCount : 0)
   }, [ordersList, pd.dishId])
 
-  const updOrderL = isAdd => {
-    updateOrderList(isAdd)
-  }
   // console.log('pd from pitem :', pd)
   // console.log('pd', pd.dishName)
   const styleFoodCodeFunc = foodType => {
@@ -61,7 +63,7 @@ const ProductItem = React.memo((props) => {
             <button
               type='button'
               data-testid={`${pd.dishId}-increament-button`}
-              onClick={() => updOrderL(false)}
+              onClick={() => decrementCartItemQuantity(pd.dishId)}
               className='food-quant-btn'
             >
               -
@@ -70,7 +72,7 @@ const ProductItem = React.memo((props) => {
             <button
               type='button'
               data-testid={`${pd.dishId}-decreament-button`}
-              onClick={() => updOrderL(true)}
+              onClick={() => addCartItem(prodData)}
               className='food-quant-btn'
             >
               +

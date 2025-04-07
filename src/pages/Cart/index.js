@@ -1,18 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useState, useEffect, useMemo} from "react";
+import { useContext, useState, useEffect} from "react";
 
 import Header from "../../components/Header";
 import CartItem from '../../components/CartItem'
 
-import RestaurantCartContext from "../../Contexts";
+import CartContext from "../../Contexts";
 
 import "./style.css";
 
 const Cart = () => {
-  const { productsContext, removeAllCartContext } = useContext(
-    RestaurantCartContext
+  const { cartList, removeAllCartItems } = useContext(
+    CartContext
   );
-  const cartList = useMemo(()=> productsContext?.ordersList || [], [productsContext])
   // console.log("cartList", cartList);
   
   const [totalAmount, setTotalAmount] = useState(0)
@@ -28,7 +27,7 @@ const Cart = () => {
   };
 
   const doCheckoutFunc = () => {
-    removeAllCartContext()
+    removeAllCartItems()
   }
 
   const renderEmptyView = () => (
@@ -52,7 +51,7 @@ const Cart = () => {
         <button
           type="button"
           className="removeAll-btn"
-          onClick={removeAllCartContext}
+          onClick={removeAllCartItems}
         >
           {`Remove All (${cartList.length})`}
         </button>
@@ -73,8 +72,7 @@ const Cart = () => {
   return (
     <>
       <Header
-        restoName={productsContext.restoName}
-        ordersList={productsContext.ordersList}
+        ordersList={cartList}
       />
       <div className="cart-container">
         {cartList.length === 0 ? renderEmptyView() : renderCartItems()}

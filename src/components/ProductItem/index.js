@@ -1,8 +1,8 @@
 // import React from 'react'
-import {useState, useEffect} from 'react'
+import React,{useState, useEffect} from 'react'
 import './style.css'
 
-const ProductItem = props => {
+const ProductItem = React.memo((props) => {
   const {prodData, ordersList, updateOrderList} = props
   // console.log('prod item', prodData)
   // console.log('ordersList in pd : ', ordersList)
@@ -84,9 +84,10 @@ const ProductItem = props => {
         )}
       </div>
       <p className='food-cal'>{pd.dishCalories} calories</p>
-      <img src={pd.dishImage} alt={pd.dishName} className='food-img' />
+      <img src={pd.dishImage} alt={pd.dishName} className='food-img' loading='lazy' />
     </li>
   )
 }
+)
 
 export default ProductItem

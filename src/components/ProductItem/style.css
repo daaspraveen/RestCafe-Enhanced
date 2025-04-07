@@ -11,7 +11,12 @@
     justify-content: flex-start;
     align-items: flex-start;
     font-family: Roboto;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
   }
+.prod-li:hover{
+  transform: scale(1.02);
+}
   .food-code-box {
     align-self: flex-start;
     width: 25px;

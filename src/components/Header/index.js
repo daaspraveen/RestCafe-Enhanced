@@ -1,31 +1,49 @@
-import {IoCartOutline} from 'react-icons/io5'
+import {IoCartOutline, IoLogOutOutline} from 'react-icons/io5'
+import Cookies from 'js-cookie'
+import {useNavigate} from 'react-router-dom'
 
 import './style.css'
 
 const Header = props => {
   const {restoName, ordersList} = props
   // console.log('ordersList in header', ordersList)
+  const navigate = useNavigate()
 
-  const redirectHome = () => {
-    console.log('clicked cart...')
-    // const {history} = props
-    // history.push('/cart')
+  const redirectCart = () => {
+    // console.log('clicked cart...')
+    navigate("/cart")
+  }
+  const doLogout = () => {
+    // console.log('logged out')
+    Cookies.remove('login_token')
+    navigate("/login")
   }
 
   return (
     <header className='header' data-testid='header'>
       <h1 className='header-name'>{restoName}</h1>
       <div className='header-right'>
-        <p className='header-right-para'>My Orders</p>
         <button
           type='button'
+          title='cart'
           className='cart-btn'
           data-testid='cart'
-          onClick={() => redirectHome()}
+          onClick={() => redirectCart()}
         >
+          <p>My Orders</p>
           <IoCartOutline size={25} />
+          <span className='header-orders-count'>{ordersList?.length || 0}</span>
         </button>
-        <span className='header-orders-count'>{ordersList?.length || 0}</span>
+        <button
+          type='button'
+          title='logout'
+          className='logout-btn'
+          data-testid='logout'
+          onClick={() => doLogout()}
+        >
+          <p>Logout</p>
+          <IoLogOutOutline size={25} />
+        </button>
       </div>
     </header>
   )

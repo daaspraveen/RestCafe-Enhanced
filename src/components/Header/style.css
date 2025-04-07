@@ -5,7 +5,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    padding: 10px 30px;
+    padding: 10px 15px;
     * {
       font-family: Roboto;
       color: #000;
@@ -19,37 +19,72 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 25px;
     position: relative;
   }
-  .header-right-para {
+  .header-right p {
     font-size: 12px;
     font-weight: 500;
   }
-  .cart-btn {
+  .cart-btn, .logout-btn {
     color: #000;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+  .logout-btn p{
+    color: red;
+    font-size: 14px;
+  }
+  .cart-btn p, .logout-btn p{
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 4px;
+  }
+  .cart-btn p::before,.logout-btn p::before{
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    height: 2px;
+    width: 50px;
+    border-radius: 2px;
+    background-color: red;
+    transform: translateX(-60px);
+    transition: all 0.2s ease-in-out;
+  }
+  .cart-btn p::before{
+    background-color: limegreen;
+    width: 55px;
+  }
+  .cart-btn:hover >p::before,.logout-btn:hover >p::before{
+    transform: translateX(0px);
   }
   .header-orders-count {
     border: none;
     background-color: coral;
     border-radius: 50%;
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 400;
     aspect-ratio: 1 / 1;
-    width: 15px;
+    width: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 3px;
     position: absolute;
-    right: -12px;
+    right: -13px;
     top: -5px;
     color: #fff;
   }
   
   @media screen and (max-width: 767px) {
-    .header-right-para {
+    .header-right p {
       display: none;
+    }
+    .header-orders-count{
+      top: -13px;
     }
   }
   
